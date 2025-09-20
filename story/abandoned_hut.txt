@@ -1,4 +1,5 @@
 From: forest.txt
+Title: abandon hut 
 
 Hidden between mossy oaks, you spot an abandoned wooden hut. 
 The door creaks open as the wind whistles through the cracks.

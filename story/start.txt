@@ -1,4 +1,7 @@
 From: none
+Title: Begin Your Adventure
+You are standing at the edge of a mysterious forest. The sun is setting, casting long shadows between the ancient trees. You have a backpack with some supplies and a sense of adventure in your heart.
 
-You are standing at the entrance of a dark forest.
-The trees look tall and ancient.
+Two paths diverge before you: one leads deeper into the dark forest, while another seems to wind toward a small village in the distance where you can see smoke rising from chimneys.
+
+The choice is yours...
