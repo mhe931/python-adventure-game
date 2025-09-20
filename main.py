@@ -1,8 +1,11 @@
 """
 main.py
 --------
-Updated to use "From:" and "Choices:" structure.
-This makes it easier for contributors to connect story parts without reading all files.
+Automatic story graph builder.
+
+- Reads ALL story files in the "story" folder.
+- Each file has a "From:" line and story text.
+- The program builds choices dynamically based on "From:" references.
 """
 
 import os
@@ -10,89 +13,80 @@ import os
 STORY_DIR = "story"
 
 
-def load_story(filename):
+def load_all_stories():
     """
-    Load and return the story metadata, text, and choices from a file.
-
-    Expected format:
-    ----------------
-    From: previous_file.txt
-
-    Story text...
-
-    Choices:
-    1) Choice text -> next_file.txt
-    2) Another choice -> different_file.txt
+    Read all story files and return two dictionaries:
+    - stories[file] = story text
+    - links[file] = list of files that come FROM this file
     """
-    path = os.path.join(STORY_DIR, filename)
+    stories = {}
+    links = {}
 
-    if not os.path.exists(path):
-        print(f"Error: Could not find {filename} in {STORY_DIR}/")
-        return None, None, {}
+    for filename in os.listdir(STORY_DIR):
+        if not filename.endswith(".txt"):
+            continue
 
-    with open(path, "r", encoding="utf-8") as f:
-        lines = [line.strip() for line in f.readlines() if line.strip()]
+        path = os.path.join(STORY_DIR, filename)
+        with open(path, "r", encoding="utf-8") as f:
+            lines = [line.strip() for line in f.readlines() if line.strip()]
 
-    from_file = None
-    story_text = []
-    choices = {}
-    parsing_choices = False
+        from_file = None
+        story_text = []
 
-    for line in lines:
-        if line.lower().startswith("from:"):
-            from_file = line.split(":", 1)[1].strip()
+        for line in lines:
+            if line.lower().startswith("from:"):
+                from_file = line.split(":", 1)[1].strip()
+            else:
+                story_text.append(line)
 
-        elif line.lower().startswith("choices:"):
-            parsing_choices = True
+        # Save story text
+        stories[filename] = "\n".join(story_text)
 
-        elif parsing_choices and line[0].isdigit() and ")" in line:
-            # Parse numbered choice
-            try:
-                number, rest = line.split(")", 1)
-                choice_text, next_file = rest.split("->")
-                choices[number.strip()] = {
-                    "text": choice_text.strip(),
-                    "next": next_file.strip()
-                }
-            except ValueError:
-                continue
+        # Add link (from -> current)
+        if from_file:
+            links.setdefault(from_file, []).append(filename)
 
-        elif not parsing_choices:
-            story_text.append(line)
-
-    return from_file, "\n".join(story_text), choices
+    return stories, links
 
 
 def play_game(start_file="start.txt"):
     """
-    Play the game starting from the given file.
+    Play the game starting from start_file.
     """
+    stories, links = load_all_stories()
+
     current_file = start_file
 
     while True:
-        from_file, text, choices = load_story(current_file)
+        text = stories.get(current_file)
 
         if text is None:
+            print(f"Error: Story file {current_file} not found.")
             break
 
-        # Show story text
+        # Show story
         print("\n" + "=" * 40)
         print(text)
         print("=" * 40)
+
+        # Find possible next steps
+        choices = links.get(current_file, [])
 
         if not choices:
             print("The End.")
             break
 
-        # Show choices
-        for num, choice in choices.items():
-            print(f"{num}) {choice['text']}")
+        # Display numbered choices
+        for i, choice_file in enumerate(choices, 1):
+            # Show first line of the story as preview
+            preview = stories[choice_file].split("\n")[0]
+            print(f"{i}) {preview} -> {choice_file}")
 
-        # Get user input
+        # Get player input
         user_input = input("Enter your choice: ").strip()
 
-        if user_input in choices:
-            current_file = choices[user_input]["next"]
+        if user_input.isdigit() and 1 <= int(user_input) <= len(choices):
+            current_file = choices[int(user_input) - 1]
         else:
             print("Invalid choice. Please try again.")
 
