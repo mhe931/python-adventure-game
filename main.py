@@ -1,47 +1,52 @@
 """
 main.py
 --------
-This is the central game script. It loads story files from the "story" folder,
-presents text and choices, and lets the player navigate through the adventure.
-
-Beginner-friendly design:
-- Easy to read and modify.
-- Handles basic input errors.
-- Uses plain text files for story content.
+Updated to use "From:" and "Choices:" structure.
+This makes it easier for contributors to connect story parts without reading all files.
 """
 
 import os
 
 STORY_DIR = "story"
 
+
 def load_story(filename):
     """
-    Load and return the story text and choices from a given file.
+    Load and return the story metadata, text, and choices from a file.
 
-    Story file format:
-    ------------------
-    Story text (can be multiple lines)
+    Expected format:
+    ----------------
+    From: previous_file.txt
+
+    Story text...
 
     Choices:
     1) Choice text -> next_file.txt
-    2) Choice text -> another_file.txt
+    2) Another choice -> different_file.txt
     """
     path = os.path.join(STORY_DIR, filename)
 
     if not os.path.exists(path):
         print(f"Error: Could not find {filename} in {STORY_DIR}/")
-        return None, {}
+        return None, None, {}
 
     with open(path, "r", encoding="utf-8") as f:
-        lines = f.readlines()
+        lines = [line.strip() for line in f.readlines() if line.strip()]
 
-    # Separate story text and choices
-    text_lines = []
+    from_file = None
+    story_text = []
     choices = {}
+    parsing_choices = False
 
     for line in lines:
-        line = line.strip()
-        if line.startswith(tuple(str(i) for i in range(1, 10))):  # a numbered choice
+        if line.lower().startswith("from:"):
+            from_file = line.split(":", 1)[1].strip()
+
+        elif line.lower().startswith("choices:"):
+            parsing_choices = True
+
+        elif parsing_choices and line[0].isdigit() and ")" in line:
+            # Parse numbered choice
             try:
                 number, rest = line.split(")", 1)
                 choice_text, next_file = rest.split("->")
@@ -50,11 +55,12 @@ def load_story(filename):
                     "next": next_file.strip()
                 }
             except ValueError:
-                continue  # skip malformed lines
-        elif line:
-            text_lines.append(line)
+                continue
 
-    return "\n".join(text_lines), choices
+        elif not parsing_choices:
+            story_text.append(line)
+
+    return from_file, "\n".join(story_text), choices
 
 
 def play_game(start_file="start.txt"):
@@ -64,15 +70,15 @@ def play_game(start_file="start.txt"):
     current_file = start_file
 
     while True:
-        text, choices = load_story(current_file)
+        from_file, text, choices = load_story(current_file)
 
         if text is None:
             break
 
         # Show story text
-        print("\n" + "="*40)
+        print("\n" + "=" * 40)
         print(text)
-        print("="*40)
+        print("=" * 40)
 
         if not choices:
             print("The End.")
