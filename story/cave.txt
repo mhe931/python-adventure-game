@@ -1,4 +1,7 @@
-From: start.txt
+From: forest
+Title: Investigate the glowing cave
+Your curiosity gets the better of you, and you decide to investigate the mysterious glow. As you approach the cave entrance, you realize the light is coming from strange, luminescent crystals embedded in the cave walls.
 
-The cave is cold and damp. You see glowing eyes
-staring at you in the darkness.
+The cave is larger than you expected, with multiple tunnels branching off in different directions. The crystals provide enough light to see clearly, and you notice ancient drawings on the walls depicting what looks like a great dragon and piles of treasure.
+
+You hear a deep rumbling sound echoing from deeper in the cave...

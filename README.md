@@ -10,30 +10,42 @@ choose-your-own-adventure/
     ├── forest.txt
     └── cave.txt
 
-# Choose Your Own Adventure (Beginner Project)
+# Features
 
-Welcome to the **Choose Your Own Adventure** project!  
-This is a collaborative, text-based storytelling game written in Python.  
+Simple Story Format: Contributors only need to write "From:", "Title:", and story text
+Automatic Connections: The game automatically builds the adventure tree
+Beginner Friendly: No programming knowledge needed to add stories
+Error Handling: Gracefully handles missing files or formatting errors
+Case Insensitive: Flexible file name references
+Multiple Endings: Create different paths and conclusions
 
-## 🎮 How It Works
-- The story is divided into small sections, each stored as a text file inside the `story/` folder.
-- Each file contains:
-  - Story text
-  - A numbered list of choices
-  - Each choice leads to another file (branch in the story).
-- Players run the game with `python main.py` and navigate by entering numbers.
+# Current Story
+The example adventure includes:
 
-## 🌱 Purpose
-This project is designed for **beginner programmers** to practice:
-- Reading and writing Python code
-- Working with text files
-- Collaborating on an open-source project
+* A mysterious forest setting
+* Village encounters
+* A dragon's cave
+* Magical crystals
+* Multiple possible endings
 
-## 🚀 How to Play
-1. Clone or download this repository.
-2. Run the game:
-   ```bash
-   python main.py
-   ```
-3. Follow the prompts and enjoy the story!
+# Want to Add Your Own Story?
+Check out CONTRIBUTING.md for step-by-step instructions on how to add new story sections to the adventure!
+Requirements
 
+Python 3.x (no external libraries needed)
+Basic text editor
+Git (for contributing)
+
+# Educational Use
+This project is perfect for:
+
+Teaching basic file I/O and text processing
+Learning about data structures (dictionaries, lists)
+Understanding open-source collaboration
+Creative writing exercises
+Version control practice with Git
+
+# License
+This project is open source and available for educational use. Feel free to fork, modify, and share!
+
+Happy Adventuring! 🗡️✨
