@@ -28,6 +28,7 @@ Example: mystery_room.txt
 
 5. Write your story
 Use this format:
+ftom: start.txt
 
 Your story text goes here.
 
