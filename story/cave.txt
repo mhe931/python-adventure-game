@@ -1,3 +1,5 @@
+From: start.txt
+
 The cave is cold and damp. You see glowing eyes staring at you in the darkness.
 
 Choices:
