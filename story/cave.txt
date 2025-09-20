@@ -1,7 +1,4 @@
 From: start.txt
 
-The cave is cold and damp. You see glowing eyes staring at you in the darkness.
-
-Choices:
-1) Approach the eyes -> forest.txt
-2) Run back outside -> start.txt
+The cave is cold and damp. You see glowing eyes
+staring at you in the darkness.
