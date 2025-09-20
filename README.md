@@ -34,3 +34,6 @@ This project is designed for **beginner programmers** to practice:
 2. Run the game:
    ```bash
    python main.py
+   ```
+3. Follow the prompts and enjoy the story!
+
