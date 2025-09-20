@@ -1,7 +1,4 @@
 From: none
 
-You are standing at the entrance of a dark forest. The trees look tall and ancient.
-
-Choices:
-1) Enter the forest -> forest.txt
-2) Explore the nearby cave -> cave.txt
+You are standing at the entrance of a dark forest.
+The trees look tall and ancient.
