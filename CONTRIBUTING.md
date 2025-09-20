@@ -9,23 +9,24 @@ This project is meant for beginners, so the steps are simple and beginner-friend
 
 ## ✨ Contribution Workflow
 0. **Give a Star the project**
+
    ⭐️On GitHub, click the "star" button at the top right. 
-1. **Fork this repository**  
+2. **Fork this repository**  
    On GitHub, click the "Fork" button at the top right.
 
-2. **Clone your fork**  
+3. **Clone your fork**  
    Open your terminal and run:
    ```bash
    git clone https://github.com/YOUR-USERNAME/choose-your-own-adventure.git
    cd choose-your-own-adventure
    ```
 
-3. Create a new story file
+4. Create a new story file
 Inside the story/ folder, add a new .txt file.
 Example: mystery_room.txt
 
 
-4. Write your story
+5. Write your story
 Use this format:
 
 Your story text goes here.
