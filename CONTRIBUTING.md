@@ -8,6 +8,8 @@ This project is meant for beginners, so the steps are simple and beginner-friend
 ---
 
 ## ✨ Contribution Workflow
+0. **Give a Star the project**
+   ⭐️On GitHub, click the "star" button at the top right. 
 1. **Fork this repository**  
    On GitHub, click the "Fork" button at the top right.
 
