@@ -83,12 +83,11 @@ Always end with .txt.
 
 Must contain story text.
 
-Must contain at least one choice.
+Must contain from.
 
-Each choice must use this exact format:
+From: previous_file.txt
 
-1) Choice text -> filename.txt
-
+Their story text here...
 
 
 ---
