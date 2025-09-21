@@ -2,13 +2,14 @@
  A "Choose Your Own Adventure" Story: A text-based game where students can add different rooms or choices to a branching story. Each student can build a small part of the narrative
 
 choose-your-own-adventure/
-├── main.py
-├── README.md
-├── CONTRIBUTING.md
-└── story/
-    ├── start.txt
-    ├── forest.txt
-    └── cave.txt
+├── main.py              # The main game engine
+├── README.md            # This file
+├── CONTRIBUTING.md      # Guide for adding new stories
+└── story/               # Folder containing all story files
+    ├── start.txt        # The starting story
+    ├── forest.txt       # Example story section
+    ├── cave.txt         # Example story section
+    └── ...              # More story files
 
 # Features
 
